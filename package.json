@@ -1,0 +1,19 @@
+{
+  "name": "base-project",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Base Project",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^0.6.1",
+    "gulp": "~3.6.0",
+    "gulp-rename": "~1.2.0",
+    "gulp-less": "~1.2.3",
+    "gulp-replace": "~0.2.0",
+    "gulp-requirejs": "~0.1.3"
+  },
+  "scripts": {
+    "postinstall": "bower install",
+    "start": "http-server 'app/' -p 8000"
+  }
+}
