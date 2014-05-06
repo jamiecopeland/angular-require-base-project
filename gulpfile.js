@@ -3,12 +3,21 @@ var less = require('gulp-less');
 var rename = require('gulp-rename');
 var replace = require('gulp-replace');
 var rjs = require('gulp-requirejs');
+var plumber = require('gulp-plumber');
+var gutil = require('gulp-util');
 
 // --------------------------------------------------
 // LESS
 
+var onLessError = function (err) {  
+  gutil.log(gutil.colors.red('Less Error: ' + err.message));
+};
+
 gulp.task('less', function () {
   gulp.src('app/less/_html5-boilerplate.less')
+    .pipe(plumber({
+      errorHandler: onLessError
+    }))
     .pipe(less({
         compress: true
     }))
