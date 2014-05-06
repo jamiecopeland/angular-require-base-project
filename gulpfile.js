@@ -5,12 +5,27 @@ var replace = require('gulp-replace');
 var rjs = require('gulp-requirejs');
 var plumber = require('gulp-plumber');
 var gutil = require('gulp-util');
+var notifier = new require('node-notifier')();
 
 // --------------------------------------------------
 // LESS
 
-var onLessError = function (err) {  
+var getFileNameFromErrorMessage = function(errorMessage) {
+  var filePathWithoutSuffix = errorMessage.split('.less')[0];
+  var filePathWithougSuffixSplit = filePathWithoutSuffix.split('/');
+  return filePathWithougSuffixSplit[filePathWithougSuffixSplit.length-1];
+}
+
+var getLineNumberFromErrorMessage = function(errorMessage) {
+  return errorMessage.split('line no.')[1].replace(' ', '');
+}
+
+var onLessError = function (err) {
   gutil.log(gutil.colors.red('Less Error: ' + err.message));
+  notifier.notify({
+      title: 'Less Error',
+      message: getFileNameFromErrorMessage(err.message) + '.less - line ' + getLineNumberFromErrorMessage(err.message)
+  });
 };
 
 gulp.task('less', function () {
