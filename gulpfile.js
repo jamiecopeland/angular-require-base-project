@@ -59,8 +59,6 @@ gulp.task('requireJS', function() {
 // --------------------------------------------------
 // TESTS
 
-var karmaConfig = require('./karma.conf.js');
-
 var karmaConfigReader = {
   set: function(value) {
     karmaCommonConf = value;
@@ -68,6 +66,7 @@ var karmaConfigReader = {
   }
 }
 
+var karmaConfig = require('./karma.conf.js');
 karmaConfig(karmaConfigReader);
 
 gulp.task('test', function (done) {
@@ -79,18 +78,23 @@ gulp.task('test', function (done) {
             message: 'You did a bad!'
         });
       }
+      done();
     });
 });
 
 // --------------------------------------------------
 // DEFAULT
 
-gulp.task('develop', ['less']);
+gulp.task('develop', ['less', 'test']);
 gulp.task('deploy', ['develop', 'requireJS']);
 gulp.task('default', ['develop'], function(){
   
-  gulp.watch('app/less/*.*', function() {
+  gulp.watch('app/less/**/*.*', function() {
     gulp.run('less');
+  });
+
+  gulp.watch(['app/src/**/*.*', 'test/**/*.*'], function() {
+    gulp.run('test');
   });
 
 });

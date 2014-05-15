@@ -8,9 +8,10 @@ define([
 
       it('should do something', function() {
 
-        expect(true).to.be.false;
+        expect(true).to.be.true;
 
       });
+
     });
 
 });

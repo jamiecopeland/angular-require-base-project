@@ -14,6 +14,5 @@ define([
     $scope, $location, $log
   ) {
     $log.log('RootController initialized');
-    
   }];
 });
