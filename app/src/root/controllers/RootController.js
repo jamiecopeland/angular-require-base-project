@@ -14,6 +14,7 @@ define([
       $scope, $location, $log
     ) {
       $log.log('RootController initialized');
+      $scope.message = 'hello';
     }];
 
     return RootController;

@@ -8,7 +8,7 @@ define([
 
       it('should do something', function() {
 
-        expect(true).to.be.true;
+        expect(true).to.be.false;
 
       });
     });

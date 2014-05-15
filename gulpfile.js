@@ -48,12 +48,12 @@ gulp.task('less', function () {
 gulp.task('requireJS', function() {
   rjs({
     name: 'main',
-    baseUrl: 'app/js/',
+    baseUrl: 'app/src/',
     out: 'main-min.js',
-    mainConfigFile: 'app/js/main.js',
+    mainConfigFile: 'app/src/main.js',
     shim: {}
   })
-  .pipe(gulp.dest('./app/js'));
+  .pipe(gulp.dest('./app/src'));
 });
 
 // --------------------------------------------------

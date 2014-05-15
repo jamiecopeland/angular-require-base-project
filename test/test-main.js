@@ -4,7 +4,7 @@ var specFiles = Object.keys(window.__karma__.files).filter(function (file) {
 
 requirejs.config({
   // Karma serves files from '/base'
-  baseUrl: '/base/app/js',
+  baseUrl: '/base/app/src',
 
   paths: {
     'angularMocks': '../bower_components/angular-mocks/angular-mocks',
