@@ -8,14 +8,12 @@ define([
     RootModule
   ) {
 
-  var RootController = [
-      '$scope', '$location', '$log',
-    function(
-      $scope, $location, $log
-    ) {
-      $log.log('RootController initialized');
-      $scope.message = 'hello';
-    }];
-
-    return RootController;
+  return [
+    '$scope', '$location', '$log',
+  function(
+    $scope, $location, $log
+  ) {
+    $log.log('RootController initialized');
+    
+  }];
 });
