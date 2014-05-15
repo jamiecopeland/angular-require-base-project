@@ -6,6 +6,8 @@ var rjs = require('gulp-requirejs');
 var plumber = require('gulp-plumber');
 var gutil = require('gulp-util');
 var notifier = new require('node-notifier')();
+var _ = require('lodash');
+var karma = require('karma').server;
 
 // --------------------------------------------------
 // LESS
@@ -52,6 +54,32 @@ gulp.task('requireJS', function() {
     shim: {}
   })
   .pipe(gulp.dest('./app/js'));
+});
+
+// --------------------------------------------------
+// TESTS
+
+var karmaConfig = require('./karma.conf.js');
+
+var karmaConfigReader = {
+  set: function(value) {
+    karmaCommonConf = value;
+    karmaCommonConf.logLevel = 'INFO';
+  }
+}
+
+karmaConfig(karmaConfigReader);
+
+gulp.task('test', function (done) {
+  karma.start(_.assign({}, karmaCommonConf, {singleRun: true}),
+    function(output){
+      if(output) {
+        notifier.notify({
+            title: 'Tests failed',
+            message: 'You did a bad!'
+        });
+      }
+    });
 });
 
 // --------------------------------------------------
