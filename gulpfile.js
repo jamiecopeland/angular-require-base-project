@@ -86,7 +86,9 @@ gulp.task('test', function (done) {
 // DEFAULT
 
 gulp.task('develop', ['less', 'test']);
+
 gulp.task('deploy', ['develop', 'requireJS']);
+
 gulp.task('default', ['develop'], function(){
   
   gulp.watch('app/less/**/*.*', function() {
@@ -97,4 +99,8 @@ gulp.task('default', ['develop'], function(){
     gulp.run('test');
   });
 
+});
+
+gulp.task('serve', [], function(){
+  require('./server/server.js')
 });
