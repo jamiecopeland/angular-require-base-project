@@ -42,6 +42,6 @@ require.config({
     }
   },
 
-  deps: ['./bootstrap']
+  deps: ['./boot']
 
 });
